@@ -51,7 +51,7 @@ function curl_get($debtor_name_array)
     curl_setopt($ch, CURLOPT_TIMEOUT, 60);
     $html = curl_exec($ch);
     curl_close($ch);
-    preg_match('/notification="({.*})"/', $html, $matshes);
-    $decoded_data = json_decode(html_entity_decode($matshes[1]),true);
+    preg_match('/notification="({.*})"/', $html, $matсhes);
+    $decoded_data = json_decode(html_entity_decode($matсhes[1]),true);
     return $decoded_data;
 }

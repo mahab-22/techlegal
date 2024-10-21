@@ -15,6 +15,10 @@ class CreateTableDebtorGledgeMovableProperty extends Migration
                 'unsigned'       => true,
                 'auto_increment' => true,
             ],
+            'debtor_id' => [
+                'type'       => 'VARCHAR',
+                'constraint' => '512',
+            ],
             'property' => [
                 'type'       => 'VARCHAR',
                 'constraint' => '512',

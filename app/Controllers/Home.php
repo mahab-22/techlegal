@@ -27,19 +27,16 @@ class Home extends BaseController
 
     public function updateDebtorGledgeMovableProperty(): void
     {
-        /* В задании указано получать именно четыре атрибута, поэтому QueryBuilder */
         ini_set('display_errors', '1');
         $db = Database::connect();
-        $debtors = $db->table('debtor')
-            ->select(['lastname','firstname', 'secondname',  'birthdate'])
-            ->get()
-            ->getResultArray();
+        $debtors = $db->table('debtor')->select('*')->get()->getResultArray();
         foreach ($debtors as $debtor) {
             $response = curl_get([$debtor['lastname'],$debtor['firstname'],$debtor['secondname']]);
             if ($response['pledgors'][0]['privatePerson']['birthday'] === $debtor['birthdate']) {
                 $db->table('debtorGledgeMovableProperty')
                     ->insert([
                         'property'              => $response['properties'][0]['vehicleProperty']['vin'],
+                        'debtor_id'             => $debtor['id'],
                         'notification_number'   => $response['id'],
                         'registration_data'     => $response['regDate'],
                         'notification_text'     => json_encode($response)

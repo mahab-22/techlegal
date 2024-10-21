@@ -12,5 +12,4 @@ function print_notifications($array) :void
     echo 'Залогодатель: ' . $array['pledgors'][0]['privatePerson']['name'] . '<br>';
     echo 'День рождения: ' . $array['pledgors'][0]['privatePerson']['birthday'] . '<br>';
     echo '====================================================='. '<br>';
-
 }
